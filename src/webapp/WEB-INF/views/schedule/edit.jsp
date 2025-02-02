@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>일정 관리</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <div class="container">
@@ -59,7 +59,7 @@
         </form>
     </div>
 </div>
-<script src="js/edit.js"></script>
+<script src="../../js/edit.js"></script>
 <script>
     function deleteSchedule() {
         if (confirm('정말로 삭제하시겠습니까?')) {

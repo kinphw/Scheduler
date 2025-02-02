@@ -9,6 +9,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>일정 관리</title>
+    <%
+    int a = 10;
+    int b = 20;
+
+    %>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,10 +27,11 @@
     </div>
 
     <%
-        String person = request.getParameter("person");
-        if (person != null) {
-            ScheduleDAO dao = new ScheduleDAO();
-            List<Schedule> schedules = dao.getSchedulesByPerson(person);
+        // 데이터를 로드하는 부분은 모델로 이관되었으므로 여기서는 컨트롤러부터 전달받은 데이터를 사용
+        //        String person = request.getParameter("person");
+        //        if (person != null) {
+        //            ScheduleDAO dao = new ScheduleDAO();
+        //            List<Schedule> schedules = dao.getSchedulesByPerson(person);
     %>
     
     <h2><%= person.equals("gy") ? "건영" : "건우" %> 시간표</h2>

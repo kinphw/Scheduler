@@ -1,7 +1,9 @@
-package controller;
+package main.controller;
 
-import model.Schedule;
-import model.ScheduleDAO;
+import main.model.Schedule;
+import main.model.ScheduleDAO;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Time;
+import java.util.List;
 
 @WebServlet("/ScheduleServlet")
 public class ScheduleServlet extends HttpServlet {
@@ -75,6 +78,28 @@ public class ScheduleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("index.jsp");
+        String person = request.getParameter("person");
+        if (person != null) {
+            ScheduleDAO dao = new ScheduleDAO();
+            List<Schedule> schedules = dao.getSchedulesByPerson(person);
+            
+            // Convert schedules to JSON manually
+            JSONArray jsonArray = new JSONArray();
+            for (Schedule schedule : schedules) {
+                JSONObject jsonObj = new JSONObject();
+                jsonObj.put("id", schedule.getId());
+                jsonObj.put("person", schedule.getPerson());
+                jsonObj.put("day", schedule.getDay());
+                jsonObj.put("startTime", schedule.getStartTime().toString());
+                jsonObj.put("endTime", schedule.getEndTime().toString());
+                jsonObj.put("content", schedule.getContent());
+                jsonArray.add(jsonObj);
+            }
+            
+            request.setAttribute("scheduleJson", jsonArray.toString());
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("index.jsp");
+        }
     }
 }

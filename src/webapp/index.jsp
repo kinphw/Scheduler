@@ -1,16 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: USER
-  Date: 2025-02-02
-  Time: 오후 9:44
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
-</html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    String person = request.getParameter("person");
+    if (person == null || person.isEmpty()) {
+        person = "gy";  // 기본값
+    }
+    response.sendRedirect(request.getContextPath() + "/schedule?person=" + person);
+%>

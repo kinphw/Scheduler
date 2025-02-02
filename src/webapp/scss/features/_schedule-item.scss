@@ -1,0 +1,47 @@
+.schedule-grid {
+    width: 100%;
+    border-collapse: collapse;
+    background: $grid-background;
+    position: relative;
+    margin-top: 20px;
+    table-layout: fixed;
+
+    th, td {
+        border: 1px solid $grid-border-color;
+        padding: 0px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+    }
+
+    .time-cell {
+        width: $time-column-width;
+        height: $ten-min-cell-height;  // 10분 단위 높이로 변경
+        background-color: $background-light;
+        font-size: 0;  // 기본적으로 모든 시간 숨김
+        
+        &[data-time$="00"] {  // 정시에만 표시
+            font-size: 14px;  // 시간 표시 복원
+        }
+    }
+
+    .day-cell {
+        width: calc((100% - #{$time-column-width}) / 5);
+    }
+
+    .schedule-cell {
+        position: relative;
+        height: $ten-min-cell-height;  // 10분 단위 높이로 변경
+        //padding: 2px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba($primary-color, 0.05);
+        }
+
+        &.occupied {
+            background-color: rgba($primary-color, 0.1);
+        }
+    }
+}
