@@ -1,0 +1,57 @@
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+*.iws
+out/
+target/
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Maven specific files
+.mvn/
+!**/src/main/**/mvnw
+!**/src/test/**/mvnw
+!**/src/main/**/mvnw.cmd
+!**/src/test/**/mvnw.cmd
+**/target/
+
+# Gradle specific files
+.gradle/
+build/
+
+# Eclipse specific files
+.project
+.classpath
+.cproject
+.settings/
+bin/
+tmp/
+
+# NetBeans specific files
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code specific files
+.vscode/
