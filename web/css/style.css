@@ -17,8 +17,7 @@ body {
   text-align: center;
   margin-bottom: 30px;
 }
-
-.button {
+.person-selector .button {
   display: inline-block;
   padding: 10px 20px;
   margin: 0 10px;
@@ -28,8 +27,7 @@ body {
   border-radius: 5px;
   transition: background-color 0.3s;
 }
-
-.button:hover {
+.person-selector .button:hover {
   background-color: #0056b3;
 }
 
@@ -39,9 +37,7 @@ body {
   margin-top: 20px;
   table-layout: fixed;
 }
-
-.schedule-table th,
-.schedule-table td {
+.schedule-table th, .schedule-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
@@ -49,7 +45,6 @@ body {
   text-overflow: ellipsis;
   word-wrap: break-word;
 }
-
 .schedule-table th {
   background-color: #f8f9fa;
 }
@@ -70,13 +65,70 @@ body {
   white-space: normal;
   padding: 5px;
 }
-
 .schedule-cell:hover {
-  background-color: #f0f0f0;
+  background-color: #eff1f4;
+}
+.schedule-cell.occupied {
+  background-color: #e6f2ff;
 }
 
-.occupied {
-  background-color: #e3f2fd;
+.edit-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+.edit-form h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.edit-form .form-group {
+  margin-bottom: 20px;
+}
+.edit-form .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+.edit-form .form-group select,
+.edit-form .form-group input[type=text] {
+  width: 100%;
+  height: 44px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.edit-form .button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+}
+.edit-form .button-group .button {
+  flex: 1;
+  height: 44px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.edit-form .button-group .button.save {
+  background-color: #007BFF;
+  color: white;
+}
+.edit-form .button-group .button.delete {
+  background-color: #dc3545;
+  color: white;
+}
+.edit-form .button-group .button.cancel {
+  background-color: #6c757d;
+  color: white;
+}
+
+@media (max-width: 320px) {
+  .edit-form .button-group {
+    flex-direction: column;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -46,14 +46,16 @@
         <table class="schedule-table">
             <tr>
                 <th>시간</th>
-                <th>월</th>
-                <th>화</th>
-                <th>수</th>
-                <th>목</th>
-                <th>금</th>
+                <th class="day-cell">월</th>
+                <th class="day-cell">화</th>
+                <th class="day-cell">수</th>
+                <th class="day-cell">목</th>
+                <th class="day-cell">금</th>
             </tr>
-            <% for(int hour = 9; hour < 21; hour++) { 
-                 for(int min = 0; min < 60; min += 30) { %>
+            <% 
+            // 9시부터 21시까지 10분 단위로 행 생성
+            for(int hour = 9; hour < 21; hour++) { 
+                for(int min = 0; min < 60; min += 10) { %>
                 <tr>
                     <td class="time-cell"><%= String.format("%02d:%02d", hour, min) %></td>
                     <td class="schedule-cell" data-day="월" data-time="<%= String.format("%02d:%02d", hour, min) %>"></td>

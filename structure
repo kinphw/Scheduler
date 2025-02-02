@@ -1,0 +1,35 @@
+/C:/xampp/tomcat/webapps/Scheduler/
+├── web/
+│   ├── index.jsp                # 메인 시간표 (하이브리드 구조)
+│   ├── editSchedule.jsp         # 일정 편집 폼
+│   ├── css/
+│   │   └── style.css           # 컴파일된 CSS
+│   ├── scss/
+│   │   ├── abstracts/
+│   │   │   └── _variables.scss  # Grid 변수 추가
+│   │   ├── base/
+│   │   │   └── _reset.scss
+│   │   ├── features/
+│   │   │   ├── _person.scss
+│   │   │   ├── _schedule-grid.scss    # 베이스 그리드
+│   │   │   ├── _schedule-item.scss    # 동적 일정 객체
+│   │   │   └── _edit.scss
+│   │   ├── layout/
+│   │   │   └── _layout.scss
+│   │   └── main.scss
+│   ├── ts/
+│   │   ├── interfaces/
+│   │   │   └── Schedule.ts           # 타입 정의
+│   │   ├── schedule/
+│   │   │   ├── grid.ts              # 그리드 유틸
+│   │   │   ├── render.ts            # 일정 렌더링
+│   │   │   └── handlers.ts          # 이벤트 처리
+│   │   └── utils/
+│   │       └── time.ts              # 시간 계산
+│   └── js/                          # 컴파일된 JS
+└── src/
+    ├── controller/
+    │   └── ScheduleServlet.java
+    └── model/
+        ├── Schedule.java
+        └── ScheduleDAO.java

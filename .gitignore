@@ -55,3 +55,12 @@ nbdist/
 
 # VS Code specific files
 .vscode/
+
+# TypeScript
+*.js
+!jest.config.js
+*.js.map
+*.d.ts
+node_modules/
+dist/
+coverage/
