@@ -57,11 +57,9 @@
         width: $time-column-width;
         height: $ten-min-cell-height;
         background-color: $background-light;
-        font-size: 0;
-
-        &[data-time$="00"] {
-            font-size: 14px;
-        }
+        vertical-align: middle;
+        font-size: 14px;
+        border: 1px solid $grid-border-color;
     }
 
     .day-cell {
@@ -73,12 +71,24 @@
         height: $ten-min-cell-height;
         cursor: pointer;
 
-        &:hover {
-            background-color: rgba($primary-color, 0.05);
+        // 시간대별 실선 (hour-start)
+        &.hour-start {
+            border-top: 1px solid $grid-border-color;
         }
 
-        &.occupied {
-            background-color: rgba($primary-color, 0.1);
+        // 분단위 점선
+        &.minute-line {
+            border-top: 1px dashed lighten($grid-border-color, 10%);
+        }
+
+
+        // 모든 셀의 좌우 경계선
+        border-left: 1px solid $grid-border-color;
+        border-right: 1px solid $grid-border-color;
+
+        // 마지막 셀의 하단 경계선
+        &:last-child {
+            border-bottom: 1px solid $grid-border-color;
         }
     }
 }

@@ -30,6 +30,11 @@ body {
 .person-selector .button:hover {
   background-color: #0056b3;
 }
+.person-selector .button.active {
+  background-color: #004a99;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 
 .schedule-container {
   position: relative;
@@ -85,10 +90,9 @@ body {
   width: 80px;
   height: 15px;
   background-color: #f8f9fa;
-  font-size: 0;
-}
-.schedule-grid .time-cell[data-time$="00"] {
+  vertical-align: middle;
   font-size: 14px;
+  border: 1px solid #ddd;
 }
 .schedule-grid .day-cell {
   width: calc((100% - 80px) / 5);
@@ -97,12 +101,17 @@ body {
   position: relative;
   height: 15px;
   cursor: pointer;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
-.schedule-grid .schedule-cell:hover {
-  background-color: rgba(0, 123, 255, 0.05);
+.schedule-grid .schedule-cell.hour-start {
+  border-top: 1px solid #ddd;
 }
-.schedule-grid .schedule-cell.occupied {
-  background-color: rgba(0, 123, 255, 0.1);
+.schedule-grid .schedule-cell.minute-line {
+  border-top: 1px dashed #f7f7f7;
+}
+.schedule-grid .schedule-cell:last-child {
+  border-bottom: 1px solid #ddd;
 }
 
 .edit-container {
