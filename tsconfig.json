@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6",                 // 변환할 JavaScript 버전 (ES6 추천)
-    "module": "CommonJS",             // 모듈 시스템 (Node.js용: "CommonJS", 브라우저용: "ES6")
+    "module": "ES6",             // 모듈 시스템 (Node.js용: "CommonJS", 브라우저용: "ES6")
     "outDir": "./src/webapp/js",                // **컴파일된 파일이 저장될 경로 (`web/js/`)**
     "rootDir": "./src/webapp/ts",                   // **원본 TypeScript 파일 경로 (`web/ts/`)**
     "strict": true,                    // 엄격한 타입 검사 활성화

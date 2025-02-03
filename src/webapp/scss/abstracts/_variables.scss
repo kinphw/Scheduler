@@ -2,7 +2,6 @@ $primary-color: #007BFF;
 $hover-color: #0056b3;
 $background-light: #f8f9fa;
 $border-color: #ddd;
-$warning-color: #ffc107;
 
 // Breakpoints
 $mobile: 320px;
@@ -12,7 +11,6 @@ $desktop: 1024px;
 // Container
 $container-width: 1200px;
 $container-padding: 20px;
-$cell-height: 30px;
 
 // Form
 $input-height: 44px;
@@ -26,5 +24,4 @@ $cell-height: 60px;
 $grid-border-color: $border-color;
 $grid-background: white;
 
-$base-cell-height: 60px;  // 1시간 높이
 $ten-min-cell-height: 15px;  // 10분 단위 높이 (60px/6)

@@ -30,14 +30,11 @@ public class ScheduleController extends BaseController {
         String pathInfo = request.getPathInfo();
 
         try {
-
             // null이거나 "/" 인 경우 모두 목록 표시
             if (pathInfo == null || pathInfo.equals("/")) {
                 showList(request, response);
-
             } else if (pathInfo.equals("/edit")) { // edit인 경우
                 showEditForm(request, response);
-
             } else { // pathInfo가 의도하지 않은 경우
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
