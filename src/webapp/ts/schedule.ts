@@ -5,6 +5,7 @@ export interface Schedule {
     startTime: string;
     endTime: string;
     content: string;
+    color:string;
 }
 
 let activeSchedules: Schedule[] = [];
@@ -87,8 +88,8 @@ function renderSingleSchedule(schedule: Schedule): void {
         left: ${left}px;
         width: ${width}px;
         height: ${height}px;
-        background-color: rgba(0, 123, 255, 0.2);
-        border: 1px solid rgba(0, 123, 255, 0.5);
+        background-color: rgba(${getColorRGB(schedule.color)}, 0.2);
+        border: 1px solid rgba(${getColorRGB(schedule.color)}, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -110,13 +111,15 @@ function renderSingleSchedule(schedule: Schedule): void {
     }
 }
 
-// let resizeTimeout: number;
-// window.addEventListener('resize', () => {
-//     clearTimeout(resizeTimeout);
-//     resizeTimeout = setTimeout(() => {
-//         renderActiveSchedules();
-//     }, 250);
-// });
+function getColorRGB(color: string): string {
+    const colors: Record<string, string> = {
+        'blue': '0, 123, 255',
+        'green': '40, 167, 69',
+        'yellow': '255, 193, 7'
+    };
+    return colors[color] || colors['blue'];
+}
+
 
 let isResizing = false;
 

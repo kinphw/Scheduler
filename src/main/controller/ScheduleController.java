@@ -20,8 +20,8 @@ public class ScheduleController extends BaseController {
     @Override
     public void init() throws ServletException {
         super.init();
-        // scheduleDAO = new ScheduleDAO();
-        scheduleDAO = new TestScheduleDAO();
+        scheduleDAO = new ScheduleDAO();
+        // scheduleDAO = new TestScheduleDAO();
     }
 
     @Override

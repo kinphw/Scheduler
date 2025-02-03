@@ -97,7 +97,8 @@
                     endTime: '<%= schedule.getEndTime() %>',
                     content: '<%= schedule.getContent() %>',
                     id: <%= schedule.getId() %>,
-                    person: '<%= schedule.getPerson() %>'  // person 정보 추가
+                    person: '<%= schedule.getPerson() %>',  // person 정보 추가
+                    color: '<%= schedule.getColor() %>'
                 },
                 <% } %>
             ];

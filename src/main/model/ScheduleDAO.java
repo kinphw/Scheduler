@@ -13,23 +13,23 @@ public class ScheduleDAO {
             "SELECT * FROM schedules WHERE person = ? ORDER BY day, start_time";
 
     private static final String INSERT_SCHEDULE =
-            "INSERT INTO schedules (person, day, start_time, end_time, content) VALUES (?, ?, ?, ?, ?)";
-
+            "INSERT INTO schedules (person, day, start_time, end_time, content, color) VALUES (?, ?, ?, ?, ?, ?)";
+    
     private static final String UPDATE_SCHEDULE =
-            "UPDATE schedules SET person=?, day=?, start_time=?, end_time=?, content=? WHERE id=?";
-
+            "UPDATE schedules SET person=?, day=?, start_time=?, end_time=?, content=?, color=? WHERE id=?";
+    
     private static final String DELETE_SCHEDULE =
             "DELETE FROM schedules WHERE id=?";
 
     public List<Schedule> getSchedulesByPerson(String person) {
         List<Schedule> schedules = new ArrayList<>();
-
+    
         try (Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SCHEDULES_BY_PERSON)) {
-
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SCHEDULES_BY_PERSON)) {
+    
             preparedStatement.setString(1, person);
             ResultSet rs = preparedStatement.executeQuery();
-
+    
             while (rs.next()) {
                 Schedule schedule = new Schedule();
                 schedule.setId(rs.getInt("id"));
@@ -38,6 +38,7 @@ public class ScheduleDAO {
                 schedule.setStartTime(rs.getTime("start_time"));
                 schedule.setEndTime(rs.getTime("end_time"));
                 schedule.setContent(rs.getString("content"));
+                schedule.setColor(rs.getString("color"));  // Add this line
                 schedule.setCreatedAt(rs.getTimestamp("created_at"));
                 schedule.setUpdatedAt(rs.getTimestamp("updated_at"));
                 schedules.add(schedule);

@@ -18,6 +18,7 @@ public class TestScheduleDAO extends ScheduleDAO {
         schedule1.setStartTime(Time.valueOf("09:00:00"));
         schedule1.setEndTime(Time.valueOf("09:30:00"));
         schedule1.setContent("테스트 일정");
+        schedule1.setColor("blue");
         schedules.add(schedule1);
 
         // 두 번째 테스트 일정 - 새로운 객체 생성
@@ -28,6 +29,7 @@ public class TestScheduleDAO extends ScheduleDAO {
         schedule2.setStartTime(Time.valueOf("09:30:00"));
         schedule2.setEndTime(Time.valueOf("10:30:00"));
         schedule2.setContent("테스트2");
+        schedule2.setColor("yellow");
         schedules.add(schedule2);
 
         return schedules;

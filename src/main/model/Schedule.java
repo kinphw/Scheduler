@@ -12,6 +12,7 @@ public class Schedule {
     private String content;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private String color;
 
     // 기본 생성자
     public Schedule() {
@@ -19,7 +20,7 @@ public class Schedule {
 
     // 전체 필드 생성자
     public Schedule(int id, String person, String day, Time startTime, Time endTime, 
-                   String content, Timestamp createdAt, Timestamp updatedAt) {
+                   String content, Timestamp createdAt, Timestamp updatedAt, String color) {
         this.id = id;
         this.person = person;
         this.day = day;
@@ -28,6 +29,7 @@ public class Schedule {
         this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.color = color;
     }
 
     // Getter 메서드
@@ -39,6 +41,7 @@ public class Schedule {
     public String getContent() { return content; }
     public Timestamp getCreatedAt() { return createdAt; }
     public Timestamp getUpdatedAt() { return updatedAt; }
+    public String getColor() { return color; }
 
     // Setter 메서드
     public void setId(int id) { this.id = id; }
@@ -49,6 +52,7 @@ public class Schedule {
     public void setContent(String content) { this.content = content; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
     public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
+    public void setColor(String color) { this.color = color; }
 
     @Override
     public String toString() {
@@ -61,6 +65,7 @@ public class Schedule {
                 ", content='" + content + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", color='" + color + '\'' +
                 '}';
     }
 }

@@ -5,6 +5,7 @@ export interface Schedule {
     startTime: string;
     endTime: string;
     content: string;
+    color:string;
 }
 
 export interface SchedulePosition {
