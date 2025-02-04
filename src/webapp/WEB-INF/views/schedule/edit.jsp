@@ -10,12 +10,13 @@
 <body>
 <div class="container">
     <div class="edit-container">
-        <form action="schedule" method="post" class="edit-form">
+        <form action="${pageContext.request.contextPath}/schedule/save" method="post" class="edit-form">
+            <input type="hidden" name="action" value="save">
             <input type="hidden" name="mode" value="<%= request.getParameter("mode") %>">
             <input type="hidden" name="id" value="<%= request.getParameter("id") %>">
             
             <div class="form-group">
-                <label for="person">담당자:</label>
+                <label for="person">어린이:</label>
                 <input type="text" id="person" name="person" value="<%= request.getParameter("person") %>" readonly>
             </div>
 
@@ -30,18 +31,50 @@
                 </select>
             </div>
 
+            <!-- 시작 시간 -->
             <div class="form-group">
-                <label for="startTime">시작 시간:</label>
-                <input type="time" id="startTime" name="startTime" 
-                       value="<%= request.getParameter("time") %>" 
-                       min="09:00" max="21:00" required>
+                <label>시작 시간:</label>
+                <div class="time-select-group">
+                    <select id="startHour" name="startHour" required>
+                        <% for(int hour = 9; hour <= 21; hour++) { %>
+                            <option value="<%= String.format("%02d", hour) %>"
+                                <%= hour == Integer.parseInt(request.getParameter("time").substring(0, 2)) ? "selected" : "" %>>
+                                <%= String.format("%02d", hour) %>시
+                            </option>
+                        <% } %>
+                    </select>
+                    <select id="startMinute" name="startMinute" required>
+                        <% for(int minute = 0; minute < 60; minute += 10) { %>
+                            <option value="<%= String.format("%02d", minute) %>"
+                                <%= minute == Integer.parseInt(request.getParameter("time").substring(2)) ? "selected" : "" %>>
+                                <%= String.format("%02d", minute) %>분
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
             </div>
 
+            <!-- 종료 시간 -->
             <div class="form-group">
-                <label for="endTime">종료 시간:</label>
-                <input type="time" id="endTime" name="endTime" 
-                       value="<%= request.getParameter("time") %>" 
-                       min="09:00" max="21:00" required>
+                <label>종료 시간:</label>
+                <div class="time-select-group">
+                    <select id="endHour" name="endHour" required>
+                        <% for(int hour = 9; hour <= 21; hour++) { %>
+                            <option value="<%= String.format("%02d", hour) %>"
+                                <%= hour == Integer.parseInt(request.getParameter("time").substring(0, 2)) + 1 ? "selected" : "" %>>
+                                <%= String.format("%02d", hour) %>시
+                            </option>
+                        <% } %>
+                    </select>
+                    <select id="endMinute" name="endMinute" required>
+                        <% for(int minute = 0; minute < 60; minute += 10) { %>
+                            <option value="<%= String.format("%02d", minute) %>"
+                                <%= minute == Integer.parseInt(request.getParameter("time").substring(2)) ? "selected" : "" %>>
+                                <%= String.format("%02d", minute) %>분
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
             </div>
 
             <div class="form-group">
@@ -49,16 +82,42 @@
                 <textarea id="content" name="content" required></textarea>
             </div>
 
+            <!-- Add color selection -->
+            <div class="form-group">
+                <label for="color">색상:</label>
+                <select id="color" name="color" required>
+                    <option value="blue" ${schedule.color == 'blue' ? 'selected' : ''}>파란색</option>
+                    <option value="green" ${schedule.color == 'green' ? 'selected' : ''}>초록색</option>
+                    <option value="yellow" ${schedule.color == 'yellow' ? 'selected' : ''}>노란색</option>
+                </select>
+            </div>
+
             <div class="button-group">
                 <button type="submit" class="btn-primary">저장</button>
                 <button type="button" class="btn-secondary" onclick="history.back()">취소</button>
-                <% if ("edit".equals(request.getParameter("mode"))) { %>
-                    <button type="button" class="btn-danger" onclick="deleteSchedule()">삭제</button>
-                <% } %>
             </div>
         </form>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 시간 입력 제한 설정
+    const timeInputs = document.querySelectorAll('input[type="time"]');
+    timeInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            const time = this.value;
+            const minutes = parseInt(time.split(':')[1]);
+            if (minutes % 10 !== 0) {
+                const roundedMinutes = Math.round(minutes / 10) * 10;
+                this.value = time.split(':')[0] + ':' + 
+                            (roundedMinutes < 10 ? '0' : '') + roundedMinutes;
+            }
+        });
+    });
+});
+</script>
+
 <script src="../../js/edit.js"></script>
 <script>
     function deleteSchedule() {

@@ -20,9 +20,25 @@ export function renderCell(cell: HTMLElement, schedule: Schedule): void {
     cell.onclick = () => handleCellClick(cell, schedule);
 }
 
-export function handleCellClick(cell: HTMLElement, schedule: Schedule): void {
-    location.href = `editSchedule.jsp?person=${schedule.person}&day=${schedule.day}&time=${cell.getAttribute('data-time')}&mode=edit&id=${schedule.id}`;
+export function handleCellClick(cell: HTMLElement, schedule?: Schedule): void {
+    if (schedule) {
+        // 기존 일정 수정
+        location.href = `schedule/edit?person=${schedule.person}&day=${schedule.day}&time=${cell.getAttribute('data-time')}&mode=edit&id=${schedule.id}`;
+    } else {
+        // 새 일정 추가 - URL 경로 수정
+        const currentPerson = document.querySelector('.person-selector .button.active')?.textContent?.trim() === '건영' ? 'gy' : 'gw';
+        const day = cell.getAttribute('data-day');
+        const time = cell.getAttribute('data-time');
+        location.href = `schedule/form/add?person=${currentPerson}&day=${day}&time=${time}`;  // URL 경로 수정
+    }
 }
+
+// Add click event to empty cells
+document.querySelectorAll('.schedule-cell').forEach(cell => {
+    if (!cell.classList.contains('occupied')) {
+        cell.addEventListener('click', () => handleCellClick(cell as HTMLElement));
+    }
+});
 
 function isTimeInRange(cellTime: string, startTime: string, endTime: string): boolean {
     return cellTime >= startTime && cellTime <= endTime;

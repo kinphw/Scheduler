@@ -105,6 +105,47 @@
             }
         }
     }
+
+    .time-select-group {
+        display: flex;
+        gap: 10px;
+        
+        select {
+            flex: 1;
+            height: $input-height;
+            padding: 0.5rem;
+            border: 1px solid $border-color;
+            border-radius: 4px;
+            font-size: 1rem;
+            
+            &:focus {
+                outline: none;
+                border-color: $primary-color;
+            }
+        }
+    }
+
+    .form-group {
+        // ... existing styles ...
+        
+        select {
+            width: 100%;
+            height: $input-height;
+            padding: 0.75rem;
+            border: 1px solid $border-color;
+            border-radius: 4px;
+            font-size: 1rem;
+
+            &:focus {
+                outline: none;
+                border-color: $primary-color;
+            }
+
+            option {
+                padding: 0.5rem;
+            }
+        }
+    }    
 }
 
 @media (max-width: $mobile) {

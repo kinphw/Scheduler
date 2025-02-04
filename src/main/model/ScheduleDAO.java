@@ -52,13 +52,14 @@ public class ScheduleDAO {
     public boolean saveSchedule(Schedule schedule) {
         try (Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SCHEDULE)) {
-
+    
             preparedStatement.setString(1, schedule.getPerson());
             preparedStatement.setString(2, schedule.getDay());
             preparedStatement.setTime(3, schedule.getStartTime());
             preparedStatement.setTime(4, schedule.getEndTime());
             preparedStatement.setString(5, schedule.getContent());
-
+            preparedStatement.setString(6, schedule.getColor());  // 추가된 부분
+    
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,14 +70,15 @@ public class ScheduleDAO {
     public boolean updateSchedule(Schedule schedule) {
         try (Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SCHEDULE)) {
-
+    
             preparedStatement.setString(1, schedule.getPerson());
             preparedStatement.setString(2, schedule.getDay());
             preparedStatement.setTime(3, schedule.getStartTime());
             preparedStatement.setTime(4, schedule.getEndTime());
             preparedStatement.setString(5, schedule.getContent());
-            preparedStatement.setInt(6, schedule.getId());
-
+            preparedStatement.setString(6, schedule.getColor());  // 추가된 부분
+            preparedStatement.setInt(7, schedule.getId());
+    
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
