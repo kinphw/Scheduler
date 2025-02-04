@@ -28,6 +28,12 @@ public class UpdateScheduleController extends BaseController {
         request.setCharacterEncoding("UTF-8");
 
         try {
+
+            Schedule schedule = new Schedule();
+            schedule.setId(Integer.parseInt(request.getParameter("id")));
+            schedule.setPerson(request.getParameter("person"));
+            schedule.setDay(request.getParameter("day"));
+
             // 시간 데이터 조합
             String startHour = request.getParameter("startHour");
             String startMinute = request.getParameter("startMinute");
@@ -37,12 +43,18 @@ public class UpdateScheduleController extends BaseController {
             String startTime = String.format("%s:%s:00", startHour, startMinute);
             String endTime = String.format("%s:%s:00", endHour, endMinute);
 
-            Schedule schedule = new Schedule();
-            schedule.setId(Integer.parseInt(request.getParameter("id")));
-            schedule.setPerson(request.getParameter("person"));
-            schedule.setDay(request.getParameter("day"));
-            schedule.setStartTime(Time.valueOf(startTime));
-            schedule.setEndTime(Time.valueOf(endTime));
+            Time start = Time.valueOf(startTime);
+            Time end = Time.valueOf(endTime);
+            
+            if (start.compareTo(end) >= 0) {
+                setError(request, "종료 시간은 시작 시간보다 늦어야 합니다.");
+                request.setAttribute("schedule", schedule);
+                forward("/WEB-INF/views/schedule/edit.jsp", request, response);
+                return;
+            }
+    
+            schedule.setStartTime(start);
+            schedule.setEndTime(end);
             schedule.setContent(request.getParameter("content"));
             schedule.setColor(request.getParameter("color"));
 

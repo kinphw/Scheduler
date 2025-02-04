@@ -88,7 +88,8 @@
 
     <script type="module">
         import { renderSchedule } from "${pageContext.request.contextPath}/js/schedule.js";
-        window.onload = function() {
+        
+        (function() {
             const schedules = [
                 <% for(Schedule schedule : schedules) { %>
                 {
@@ -97,7 +98,7 @@
                     endTime: '<%= schedule.getEndTime() %>',
                     content: '<%= schedule.getContent() %>',
                     id: <%= schedule.getId() %>,
-                    person: '<%= schedule.getPerson() %>',  // person 정보 추가
+                    person: '<%= schedule.getPerson() %>',
                     color: '<%= schedule.getColor() %>'
                 },
                 <% } %>
@@ -105,11 +106,12 @@
 
             const currentPerson = '<%= person %>';
 
-            // person이 일치하는 일정만 필터링하여 렌더링
-            schedules
-                .filter(schedule => schedule.person === currentPerson)
-                .forEach(schedule => renderSchedule(schedule));
-        };
+            document.addEventListener('DOMContentLoaded', function() {
+                schedules
+                    .filter(schedule => schedule.person === currentPerson)
+                    .forEach(schedule => renderSchedule(schedule));
+            });
+        })();
     </script>
 </div>
 </body>

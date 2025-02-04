@@ -1,6 +1,7 @@
 .schedule-container {
     position: relative;
     width: 100%;
+    box-sizing: border-box;  // 추가
 }
 
 #schedule-overlay {
@@ -22,15 +23,18 @@
     justify-content: center;
     cursor: pointer;
     z-index: 100;
-
+    box-sizing: border-box;  // 추가
+    border-radius: 8px;
+    
+    // border를 포함한 전체 크기 계산
+    width: 100%;
+    height: 100%;
+    
     .schedule-content {
-        padding: 4px;
+        //padding: 4px;
         text-align: center;
         word-break: keep-all;
         word-wrap: break-word;
-        //overflow: hidden;
-        //text-overflow: ellipsis;
-        //white-space: nowrap;
         width: 100%;
         font-size: 0.7em;
     }
@@ -38,11 +42,22 @@
 
 .schedule-grid {
     width: 100%;
+    // width : 100vw;
+    max-width: $container-width;
+    // margin-left: -20px;
+    box-sizing: border-box;  // 추가
+
     border-collapse: collapse;
     background: $grid-background;
     position: relative;
-    margin-top: 20px;
+    margin-top: 5px;
     table-layout: fixed;
+
+    th {
+        height: 25px;  // 제목행 높이 증가
+        font-weight: bold;
+        background-color: $background-light;
+    }
 
     th, td {
         border: 1px solid $grid-border-color;
@@ -54,19 +69,27 @@
     }
 
     .time-cell {
-        width: $time-column-width;
+        // width: $time-column-width;
+        width: 45px;
         height: $ten-min-cell-height;
         background-color: $background-light;
         vertical-align: middle;
-        font-size: 14px;
+        font-size: 12px;
         border: 1px solid $grid-border-color;
+        padding: 2px;
     }
 
     .day-cell {
-        width: calc((100% - #{$time-column-width}) / 5);
+        // width: calc((100% - #{$time-column-width}) / 5);
+        width: calc((100% - 45px) / 5);  // viewport 기준 균등 분배
+        max-width: calc((#{$container-width} - 45px) / 5);        
     }
 
     .schedule-cell {
+        box-sizing: border-box;  // 추가
+        width: calc((100% - 45px) / 5);  // viewport 기준 균등 분배
+        max-width: calc((#{$container-width} - 45px) / 5);
+
         position: relative;
         height: $ten-min-cell-height;
         cursor: pointer;
@@ -80,7 +103,6 @@
         &.minute-line {
             border-top: 1px dashed lighten($grid-border-color, 10%);
         }
-
 
         // 모든 셀의 좌우 경계선
         border-left: 1px solid $grid-border-color;

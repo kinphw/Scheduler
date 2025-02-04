@@ -49,9 +49,18 @@
         }
 
         textarea {
-            min-height: 100px;
+            min-height: 50px;
             resize: vertical;
         }
+
+        input[readonly] {
+            // height: $input-height;
+            height: 25px;
+            width: 100px;
+            padding: 0.5rem 0.75rem;  // 상하 0.5rem, 좌우 0.75rem
+            line-height: normal;      // line-height 리셋
+            resize: none;             // 크기 조절 방지
+        }        
     }
 
     .button-group {

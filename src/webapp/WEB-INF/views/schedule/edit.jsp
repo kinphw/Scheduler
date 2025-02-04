@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="main.model.Schedule" %>
+<%
+    Schedule schedule = (Schedule)request.getAttribute("schedule");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +24,11 @@
             <!-- 기존 폼 필드들 -->
             <div class="form-group">
                 <label for="person">어린이:</label>
-                <input type="text" id="person" name="person" 
-                       value="${schedule != null ? schedule.person : param.person}" readonly>
+                <input type="hidden" id="person" name="person" 
+                    value="${schedule != null ? schedule.person : param.person}">
+                <input type="text" 
+                    value="<%= ("gy".equals(request.getParameter("person")) || (schedule != null && "gy".equals(schedule.getPerson()))) ? "건영" : "건우" %>" 
+                    readonly>
             </div>
 
             <div class="form-group">
@@ -36,9 +42,7 @@
                 </select>
             </div>
 
-            <%
-                Schedule schedule = (Schedule)request.getAttribute("schedule");
-            %>
+
 
 
             <!-- 시작 시간 -->
@@ -146,6 +150,22 @@ function confirmDelete() {
         document.getElementById('deleteForm').submit();
     }
 }
+
+document.querySelector('.edit-form').addEventListener('submit', function(e) {
+    const startHour = document.getElementById('startHour').value;
+    const startMinute = document.getElementById('startMinute').value;
+    const endHour = document.getElementById('endHour').value;
+    const endMinute = document.getElementById('endMinute').value;
+
+    const startTime = parseInt(startHour + startMinute);
+    const endTime = parseInt(endHour + endMinute);
+
+    if (startTime >= endTime) {
+        e.preventDefault();
+        alert('종료 시간은 시작 시간보다 늦어야 합니다.');
+    }
+});
+
 </script>
 </body>
 </html>

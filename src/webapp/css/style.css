@@ -15,7 +15,7 @@ body {
 
 .person-selector {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .person-selector .button {
   display: inline-block;
@@ -39,6 +39,7 @@ body {
 .schedule-container {
   position: relative;
   width: 100%;
+  box-sizing: border-box;
 }
 
 #schedule-overlay {
@@ -60,9 +61,12 @@ body {
   justify-content: center;
   cursor: pointer;
   z-index: 100;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
 }
 .schedule-item .schedule-content {
-  padding: 4px;
   text-align: center;
   word-break: keep-all;
   word-wrap: break-word;
@@ -72,11 +76,18 @@ body {
 
 .schedule-grid {
   width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
   border-collapse: collapse;
   background: white;
   position: relative;
-  margin-top: 20px;
+  margin-top: 5px;
   table-layout: fixed;
+}
+.schedule-grid th {
+  height: 25px;
+  font-weight: bold;
+  background-color: #f8f9fa;
 }
 .schedule-grid th, .schedule-grid td {
   border: 1px solid #ddd;
@@ -87,17 +98,22 @@ body {
   word-wrap: break-word;
 }
 .schedule-grid .time-cell {
-  width: 80px;
+  width: 45px;
   height: 15px;
   background-color: #f8f9fa;
   vertical-align: middle;
-  font-size: 14px;
+  font-size: 12px;
   border: 1px solid #ddd;
+  padding: 2px;
 }
 .schedule-grid .day-cell {
-  width: calc((100% - 80px) / 5);
+  width: calc((100% - 45px) / 5);
+  max-width: calc((1200px - 45px) / 5);
 }
 .schedule-grid .schedule-cell {
+  box-sizing: border-box;
+  width: calc((100% - 45px) / 5);
+  max-width: calc((1200px - 45px) / 5);
   position: relative;
   height: 15px;
   cursor: pointer;
@@ -165,8 +181,15 @@ body {
   border-color: #4A90E2;
 }
 .edit-form .form-group textarea {
-  min-height: 100px;
+  min-height: 50px;
   resize: vertical;
+}
+.edit-form .form-group input[readonly] {
+  height: 25px;
+  width: 100px;
+  padding: 0.5rem 0.75rem;
+  line-height: normal;
+  resize: none;
 }
 .edit-form .button-group {
   display: flex;
