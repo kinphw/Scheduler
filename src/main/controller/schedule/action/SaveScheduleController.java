@@ -1,8 +1,8 @@
-package main.controller.schedule;
+package main.controller.schedule.action;
 
 import main.controller.BaseController;
 import main.model.Schedule;
-import main.model.ScheduleDAO;
+import main.model.dao.WriteScheduleDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,12 +14,12 @@ import java.sql.Time;
 @WebServlet("/schedule/save")
 public class SaveScheduleController extends BaseController {
 
-    private ScheduleDAO scheduleDAO;
+    private WriteScheduleDAO writeScheduleDAO;
 
     @Override
     public void init() throws ServletException {
         super.init();
-        scheduleDAO = new ScheduleDAO();
+        writeScheduleDAO = new WriteScheduleDAO();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class SaveScheduleController extends BaseController {
             schedule.setContent(request.getParameter("content"));
             schedule.setColor(request.getParameter("color"));
 
-            if (scheduleDAO.saveSchedule(schedule)) {
+            if (writeScheduleDAO.saveSchedule(schedule)) {
                 setMessage(request, "일정이 추가되었습니다.");
                 redirect("/schedule?person=" + schedule.getPerson(), request, response);
             } else {

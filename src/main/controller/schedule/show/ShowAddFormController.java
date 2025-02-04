@@ -1,6 +1,8 @@
-package main.controller.schedule;
+package main.controller.schedule.show;
 
 import main.controller.BaseController;
+import main.model.dao.ReadScheduleDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,14 @@ import java.io.IOException;
 
 @WebServlet("/schedule/form/add")
 public class ShowAddFormController extends BaseController {
+
+    private ReadScheduleDAO readScheduleDAO;  // ScheduleDAO -> ReadScheduleDAO (필요한 경우)    
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        readScheduleDAO = new ReadScheduleDAO();  // 변경
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
