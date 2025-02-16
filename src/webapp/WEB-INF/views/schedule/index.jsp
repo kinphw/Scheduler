@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="main.model.Schedule" %>
+<%@ page import="com.google.gson.Gson" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -28,6 +29,11 @@
     <%
         String person = (String) request.getAttribute("person");
         List<Schedule> schedules = (List<Schedule>) request.getAttribute("schedules");
+
+        // Gson 객체 생성
+        Gson gson = new Gson();
+        String schedulesJson = gson.toJson(schedules);
+
         if (person != null && schedules != null) {
     %>
 
@@ -89,29 +95,30 @@
     <script type="module">
         import { renderSchedule } from "${pageContext.request.contextPath}/js/schedule.js";
         
-        (function() {
-            const schedules = [
-                <% for(Schedule schedule : schedules) { %>
-                {
-                    day: '<%= schedule.getDay() %>',
-                    startTime: '<%= schedule.getStartTime() %>',
-                    endTime: '<%= schedule.getEndTime() %>',
-                    content: '<%= schedule.getContent() %>',
-                    id: <%= schedule.getId() %>,
-                    person: '<%= schedule.getPerson() %>',
-                    color: '<%= schedule.getColor() %>'
-                },
-                <% } %>
-            ];
+        // (function() {
+        <%--const schedules = [--%>
+        <%--    <% for(Schedule schedule : schedules) { %>--%>
+        <%--    {--%>
+        <%--        day: '<%= schedule.getDay() %>',--%>
+        <%--        startTime: '<%= schedule.getStartTime() %>',--%>
+        <%--        endTime: '<%= schedule.getEndTime() %>',--%>
+        <%--        content: '<%= schedule.getContent() %>',--%>
+        <%--        id: <%= schedule.getId() %>,--%>
+        <%--        person: '<%= schedule.getPerson() %>',--%>
+        <%--        color: '<%= schedule.getColor() %>'--%>
+        <%--    },--%>
+        <%--    <% } %>--%>
+        <%--];--%>
 
-            const currentPerson = '<%= person %>';
+        const schedules = <%= schedulesJson %>; // 직접 문자열로 만들지 않고 Gson을 이용해 JSON으로 변환한 문자열을 사용
+        const currentPerson = '<%= person %>';
 
-            document.addEventListener('DOMContentLoaded', function() {
-                schedules
-                    .filter(schedule => schedule.person === currentPerson)
-                    .forEach(schedule => renderSchedule(schedule));
-            });
-        })();
+        document.addEventListener('DOMContentLoaded', function() {
+            schedules
+                .filter(schedule => schedule.person === currentPerson)
+                .forEach(schedule => renderSchedule(schedule));
+        });
+        // })();
     </script>
 </div>
 </body>
