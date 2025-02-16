@@ -1,6 +1,16 @@
 <%@ page import="java.util.List" %>
 <%@ page import="main.model.Schedule" %>
+
 <%@ page import="com.google.gson.Gson" %>
+<%@ page import="com.google.gson.GsonBuilder" %>
+<%@ page import="com.google.gson.JsonElement" %>
+<%@ page import="com.google.gson.JsonPrimitive" %>
+<%@ page import="com.google.gson.JsonSerializationContext" %>
+<%@ page import="com.google.gson.JsonSerializer" %>
+<%@ page import="java.lang.reflect.Type" %>
+<%@ page import="java.time.LocalTime" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -31,7 +41,17 @@
         List<Schedule> schedules = (List<Schedule>) request.getAttribute("schedules");
 
         // Gson 객체 생성
-        Gson gson = new Gson();
+        // Gson gson = new Gson();
+        // Gson 빌더로 24시간 포맷 지정
+        Gson gson = new GsonBuilder()
+            .registerTypeAdapter(java.time.LocalTime.class, new JsonSerializer<LocalTime>() {
+                @Override
+                public JsonElement serialize(LocalTime src, Type typeOfSrc, JsonSerializationContext context) {
+                    return new JsonPrimitive(src.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+                }
+            })
+            .create();
+
         String schedulesJson = gson.toJson(schedules);
 
         if (person != null && schedules != null) {

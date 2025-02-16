@@ -2,6 +2,7 @@ package main.model.dao;
 
 import main.model.Schedule;
 import java.sql.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +28,18 @@ public class ReadScheduleDAO extends BaseScheduleDAO {
                 schedule.setId(rs.getInt("id"));
                 schedule.setPerson(rs.getString("person"));
                 schedule.setDay(rs.getString("day"));
-                schedule.setStartTime(rs.getTime("start_time"));
-                schedule.setEndTime(rs.getTime("end_time"));
+
+                // Time -> LocalTime
+                Time dbStartTime = rs.getTime("start_time");
+                Time dbEndTime = rs.getTime("end_time");
+                LocalTime localStartTime = dbStartTime.toLocalTime();
+                LocalTime localEndTime = dbEndTime.toLocalTime();
+
+//                schedule.setStartTime(rs.getTime("start_time"));
+//                schedule.setEndTime(rs.getTime("end_time"));
+                schedule.setStartTime(localStartTime);
+                schedule.setEndTime(localEndTime);
+
                 schedule.setContent(rs.getString("content"));
                 schedule.setColor(rs.getString("color"));
                 schedule.setCreatedAt(rs.getTimestamp("created_at"));
@@ -55,8 +66,18 @@ public class ReadScheduleDAO extends BaseScheduleDAO {
                 schedule.setId(rs.getInt("id"));
                 schedule.setPerson(rs.getString("person"));
                 schedule.setDay(rs.getString("day"));
-                schedule.setStartTime(rs.getTime("start_time"));
-                schedule.setEndTime(rs.getTime("end_time"));
+
+                // Time -> LocalTime
+                Time dbStartTime = rs.getTime("start_time");
+                Time dbEndTime = rs.getTime("end_time");
+                LocalTime localStartTime = dbStartTime.toLocalTime();
+                LocalTime localEndTime = dbEndTime.toLocalTime();
+
+//                schedule.setStartTime(rs.getTime("start_time"));
+//                schedule.setEndTime(rs.getTime("end_time"));
+                schedule.setStartTime(localStartTime);
+                schedule.setEndTime(localEndTime);
+
                 schedule.setContent(rs.getString("content"));
                 schedule.setColor(rs.getString("color"));
                 schedule.setCreatedAt(rs.getTimestamp("created_at"));

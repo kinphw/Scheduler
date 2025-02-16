@@ -52,7 +52,7 @@
                     <select id="startHour" name="startHour" required>
                         <% for(int hour = 9; hour <= 21; hour++) { %>
                             <option value="<%= String.format("%02d", hour) %>"
-                                <%= (schedule != null && hour == schedule.getStartTime().getHours()) || 
+                                <%= (schedule != null && hour == schedule.getStartTime().getHour()) || 
                                     (schedule == null && hour == Integer.parseInt(request.getParameter("time").substring(0, 2))) ? "selected" : "" %>>
                                 <%= String.format("%02d", hour) %>시
                             </option>
@@ -61,7 +61,7 @@
                     <select id="startMinute" name="startMinute" required>
                         <% for(int minute = 0; minute < 60; minute += 10) { %>
                             <option value="<%= String.format("%02d", minute) %>"
-                                <%= (schedule != null && minute == schedule.getStartTime().getMinutes()) || 
+                                <%= (schedule != null && minute == schedule.getStartTime().getMinute()) || 
                                     (schedule == null && minute == Integer.parseInt(request.getParameter("time").substring(2))) ? "selected" : "" %>>
                                 <%= String.format("%02d", minute) %>분
                             </option>
@@ -77,7 +77,7 @@
                     <select id="endHour" name="endHour" required>
                         <% for(int hour = 9; hour <= 21; hour++) { %>
                             <option value="<%= String.format("%02d", hour) %>"
-                                <%= (schedule != null && hour == schedule.getEndTime().getHours()) || 
+                                <%= (schedule != null && hour == schedule.getEndTime().getHour()) || 
                                     (schedule == null && hour == Integer.parseInt(request.getParameter("time").substring(0, 2)) + 1) ? "selected" : "" %>>
                                 <%= String.format("%02d", hour) %>시
                             </option>
@@ -86,7 +86,7 @@
                     <select id="endMinute" name="endMinute" required>
                         <% for(int minute = 0; minute < 60; minute += 10) { %>
                             <option value="<%= String.format("%02d", minute) %>"
-                                <%= (schedule != null && minute == schedule.getEndTime().getMinutes()) || 
+                                <%= (schedule != null && minute == schedule.getEndTime().getMinute()) || 
                                     (schedule == null && minute == Integer.parseInt(request.getParameter("time").substring(2))) ? "selected" : "" %>>
                                 <%= String.format("%02d", minute) %>분
                             </option>

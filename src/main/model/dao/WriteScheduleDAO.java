@@ -2,6 +2,7 @@ package main.model.dao;
 
 import main.model.Schedule;
 import java.sql.*;
+import java.sql.Time;
 
 public class WriteScheduleDAO extends BaseScheduleDAO {
     
@@ -14,8 +15,8 @@ public class WriteScheduleDAO extends BaseScheduleDAO {
 
             preparedStatement.setString(1, schedule.getPerson());
             preparedStatement.setString(2, schedule.getDay());
-            preparedStatement.setTime(3, schedule.getStartTime());
-            preparedStatement.setTime(4, schedule.getEndTime());
+            preparedStatement.setTime(3, Time.valueOf(schedule.getStartTime()));
+            preparedStatement.setTime(4, Time.valueOf(schedule.getEndTime()));
             preparedStatement.setString(5, schedule.getContent());
             preparedStatement.setString(6, schedule.getColor());
 

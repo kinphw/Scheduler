@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Time;
+import java.time.LocalTime;
 
 @WebServlet("/schedule/update")
 public class UpdateScheduleController extends BaseController {
@@ -44,8 +45,11 @@ public class UpdateScheduleController extends BaseController {
             String endTime = String.format("%s:%s:00", endHour, endMinute);
 
             Time start = Time.valueOf(startTime);
-            Time end = Time.valueOf(endTime);
-            
+            Time end = Time.valueOf(endTime);            
+            // 수정: LocalTime 변환
+            LocalTime localStart = start.toLocalTime();
+            LocalTime localEnd = end.toLocalTime();            
+
             if (start.compareTo(end) >= 0) {
                 setError(request, "종료 시간은 시작 시간보다 늦어야 합니다.");
                 request.setAttribute("schedule", schedule);
@@ -53,8 +57,8 @@ public class UpdateScheduleController extends BaseController {
                 return;
             }
     
-            schedule.setStartTime(start);
-            schedule.setEndTime(end);
+            schedule.setStartTime(localStart);
+            schedule.setEndTime(localEnd);
             schedule.setContent(request.getParameter("content"));
             schedule.setColor(request.getParameter("color"));
 
