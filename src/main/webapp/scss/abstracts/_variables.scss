@@ -1,0 +1,28 @@
+$primary-color: #007BFF;
+$hover-color: #0056b3;
+//$hover-color : green;
+$background-light: #f8f9fa;
+$border-color: #ddd;
+
+// Breakpoints
+$mobile: 320px;
+$tablet: 768px;
+$desktop: 1024px;
+
+// Container
+$container-width: 1200px;
+$container-padding: 20px;
+
+// Form
+$input-height: 44px;
+$form-max-width: 600px;
+
+$gray: #6c757d;
+
+// Grid
+$time-column-width: 80px;  // 시간 열의 너비
+$cell-height: 60px;
+$grid-border-color: $border-color;
+$grid-background: white;
+
+$ten-min-cell-height: 15px;  // 10분 단위 높이 (60px/6)
