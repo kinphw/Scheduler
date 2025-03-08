@@ -112,7 +112,8 @@
             <div class="button-group">
                 <% if ("edit".equals(request.getAttribute("mode"))) { %>
                     <button type="submit" class="btn-primary">수정</button>
-                    <button type="button" class="btn-danger" onclick="confirmDelete()">삭제</button>
+<%--                    <button type="button" class="btn-danger" onclick="confirmDelete()">삭제</button>--%>
+                    <button type="button" class="btn-danger">삭제</button>
                 <% } else { %>
                     <button type="submit" class="btn-primary">저장</button>
                 <% } %>
@@ -128,44 +129,7 @@
     </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // 시간 입력 제한 설정
-    const timeInputs = document.querySelectorAll('input[type="time"]');
-    timeInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            const time = this.value;
-            const minutes = parseInt(time.split(':')[1]);
-            if (minutes % 10 !== 0) {
-                const roundedMinutes = Math.round(minutes / 10) * 10;
-                this.value = time.split(':')[0] + ':' + 
-                            (roundedMinutes < 10 ? '0' : '') + roundedMinutes;
-            }
-        });
-    });
-});
+<script type="module" src="${pageContext.request.contextPath}/js/function/edit.js"></script>
 
-function confirmDelete() {
-    if (confirm('정말로 삭제하시겠습니까?')) {
-        document.getElementById('deleteForm').submit();
-    }
-}
-
-document.querySelector('.edit-form').addEventListener('submit', function(e) {
-    const startHour = document.getElementById('startHour').value;
-    const startMinute = document.getElementById('startMinute').value;
-    const endHour = document.getElementById('endHour').value;
-    const endMinute = document.getElementById('endMinute').value;
-
-    const startTime = parseInt(startHour + startMinute);
-    const endTime = parseInt(endHour + endMinute);
-
-    if (startTime >= endTime) {
-        e.preventDefault();
-        alert('종료 시간은 시작 시간보다 늦어야 합니다.');
-    }
-});
-
-</script>
 </body>
 </html>

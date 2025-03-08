@@ -7,7 +7,11 @@
     "strict": true,                    // 엄격한 타입 검사 활성화
     "allowJs": false,                  // JavaScript 파일 포함 여부 (false: TypeScript만 컴파일)
     "sourceMap": true,                  // 디버깅을 위한 `.map` 파일 생성 (필요 없으면 false)
-    "removeComments": true              // JavaScript 파일에서 주석 제거
+    "removeComments": true,             // JavaScript 파일에서 주석 제거
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/main/webapp/ts/types"
+    ]
   },
   "include": [
     "./src/main/webapp/ts/**/*.ts"
