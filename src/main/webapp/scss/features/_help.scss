@@ -1,0 +1,21 @@
+// _help.scss
+.help-button {
+  @extend %button-base;
+  height: 38px;
+  width: 38px;
+  padding: 0;
+  margin-left: 10px;
+  border-radius: 100% !important;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  outline: none;
+  appearance: none;
+  vertical-align: middle;
+  background-color : darkolivegreen !important;
+
+  @media (max-width: $mobile) {
+    height: 32px;
+    width: 32px;
+  }
+}

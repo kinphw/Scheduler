@@ -3,6 +3,10 @@ body {
   margin: 20px;
 }
 
+body {
+  margin: 0;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -13,30 +17,43 @@ body {
   margin-bottom: 20px;
 }
 
-.person-selector {
-  text-align: center;
-  margin-bottom: 10px;
-}
-.person-selector .button {
-  display: inline-block;
-  padding: 10px 20px;
+.help-button, .person-selector .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 20px;
   margin: 0 10px;
   background-color: #007BFF;
   color: white;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s;
+  box-sizing: border-box;
 }
-.person-selector .button:hover {
+.help-button:hover, .person-selector .button:hover {
   background-color: #0056b3;
-  font-size: 1.1em;
 }
-.person-selector .button.active {
+.active.help-button, .person-selector .active.button {
   background-color: #004a99;
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+@media (max-width: 320px) {
+  .help-button, .person-selector .button {
+    height: 32px;
+    padding: 0 15px;
+    margin: 0 5px;
+    font-size: 0.9rem;
+  }
+}
 
+.person-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
 .schedule-container {
   position: relative;
   width: 100%;
@@ -293,6 +310,26 @@ body {
 @media (max-width: 320px) {
   .edit-form .button-group {
     flex-direction: column;
+  }
+}
+.help-button {
+  height: 38px;
+  width: 38px;
+  padding: 0;
+  margin-left: 10px;
+  border-radius: 100% !important;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  outline: none;
+  appearance: none;
+  vertical-align: middle;
+  background-color: darkolivegreen !important;
+}
+@media (max-width: 320px) {
+  .help-button {
+    height: 32px;
+    width: 32px;
   }
 }
 

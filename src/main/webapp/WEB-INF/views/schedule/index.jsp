@@ -34,6 +34,7 @@
                class="button <%= request.getAttribute("person") != null && request.getAttribute("person").equals("gw") ? "active" : "" %>">
                 건우
             </a>
+            <button id="helpButton" class="button help-button">?</button> <%-- 물음표 버튼 추가 250308  --%>
         </div>
 
     <%
@@ -118,26 +119,14 @@
 
     <script type="module">
         import { renderSchedule } from "${pageContext.request.contextPath}/js/schedule.js";
-        
-        // (function() {
-        <%--const schedules = [--%>
-        <%--    <% for(Schedule schedule : schedules) { %>--%>
-        <%--    {--%>
-        <%--        day: '<%= schedule.getDay() %>',--%>
-        <%--        startTime: '<%= schedule.getStartTime() %>',--%>
-        <%--        endTime: '<%= schedule.getEndTime() %>',--%>
-        <%--        content: '<%= schedule.getContent() %>',--%>
-        <%--        id: <%= schedule.getId() %>,--%>
-        <%--        person: '<%= schedule.getPerson() %>',--%>
-        <%--        color: '<%= schedule.getColor() %>'--%>
-        <%--    },--%>
-        <%--    <% } %>--%>
-        <%--];--%>
+        import { initializeHelp } from "${pageContext.request.contextPath}/js/function/help.js";
+
 
         const schedules = <%= schedulesJson %>; // 직접 문자열로 만들지 않고 Gson을 이용해 JSON으로 변환한 문자열을 사용
         const currentPerson = '<%= person %>';
 
         document.addEventListener('DOMContentLoaded', function() {
+            initializeHelp();
             schedules
                 .filter(schedule => schedule.person === currentPerson)
                 .forEach(schedule => renderSchedule(schedule));

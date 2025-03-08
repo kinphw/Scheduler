@@ -8,6 +8,13 @@ export interface Schedule {
     color:string;
 }
 
+import { initializeHelp } from './function/help.js';
+
+// DOM Content Loaded 이벤트 리스너 추가
+document.addEventListener('DOMContentLoaded', () => {
+    initializeHelp();
+});
+
 let activeSchedules: Schedule[] = [];
 
 export function renderCell(cell: HTMLElement, schedule: Schedule): void {

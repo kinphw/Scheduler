@@ -2,15 +2,15 @@
   "compilerOptions": {
     "target": "ES6",                 // 변환할 JavaScript 버전 (ES6 추천)
     "module": "ES6",             // 모듈 시스템 (Node.js용: "CommonJS", 브라우저용: "ES6")
-    "outDir": "./src/webapp/js",                // **컴파일된 파일이 저장될 경로 (`web/js/`)**
-    "rootDir": "./src/webapp/ts",                   // **원본 TypeScript 파일 경로 (`web/ts/`)**
+    "outDir": "./src/main/webapp/js",                // **컴파일된 파일이 저장될 경로 (`web/js/`)**
+    "rootDir": "./src/main/webapp/ts",                   // **원본 TypeScript 파일 경로 (`web/ts/`)**
     "strict": true,                    // 엄격한 타입 검사 활성화
     "allowJs": false,                  // JavaScript 파일 포함 여부 (false: TypeScript만 컴파일)
     "sourceMap": true,                  // 디버깅을 위한 `.map` 파일 생성 (필요 없으면 false)
     "removeComments": true              // JavaScript 파일에서 주석 제거
   },
   "include": [
-    "./src/webapp/ts/**/*.ts"
+    "./src/main/webapp/ts/**/*.ts"
   ],                 // `web/ts/` 폴더의 모든 `.ts` 파일을 포함
-  "exclude": ["./src/web/js/**/*"]             // `web/js/` 폴더의 JavaScript 파일은 제외
+  "exclude": ["./src/main/web/js/**/*"]             // `web/js/` 폴더의 JavaScript 파일은 제외
 }
