@@ -101,7 +101,6 @@
         import { renderSchedule } from "${pageContext.request.contextPath}/js/schedule.js";
         import { initializeHelp } from "${pageContext.request.contextPath}/js/function/help.js";
 
-
         const schedules = ${data.schedulesJson};// 직접 문자열로 만들지 않고 Gson을 이용해 JSON으로 변환한 문자열을 사용
         const currentPerson = '${data.person}';
 
@@ -113,6 +112,5 @@
         });
         // })();
     </script>
-</div>
 </body>
 </html>

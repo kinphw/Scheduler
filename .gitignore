@@ -23,7 +23,7 @@ target/
 *.ear
 
 # But include .jar files in /src/webapp/WEB-INF/lib/
-!src/webapp/WEB-INF/lib/*.jar
+!src/main/webapp/WEB-INF/lib/*.jar
 
 # Virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -63,8 +63,11 @@ nbdist/
 *.js
 !jest.config.js
 *.js.map
-*.d.ts
+#*.d.ts
 node_modules/
 dist/
 coverage/
 logs/
+
+# Deploy : database etc.
+deploy/
