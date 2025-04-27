@@ -15,7 +15,9 @@ public abstract class BaseScheduleDAO {
         }
     }
 
-    protected final String jdbcURL = "jdbc:mariadb://localhost:3306/sdb";
+//    protected final String jdbcURL = "jdbc:mariadb://localhost:3306/sdb";
+    protected final String jdbcURL = "jdbc:mariadb://localhost:3306/sdb?allowPublicKeyRetrieval=true&useSSL=false";
+
     protected final String jdbcUsername = "sdbuser";
     protected final String jdbcPassword = "1226";
     
